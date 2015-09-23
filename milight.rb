@@ -69,6 +69,7 @@ when "white"
     socket.send(white_init, 0, wifi_bridge_ip, wifi_bridge_port)
     sleep 0.1
     socket.send(white_finish, 0, wifi_bridge_ip, wifi_bridge_port)
+    
 when "night"
     socket = UDPSocket.new
     for i in 0..1
@@ -90,5 +91,5 @@ when "color"
   socket = UDPSocket.new
   socket.send(set_color, 0, wifi_bridge_ip, wifi_bridge_port)
   
-else puts "usage: milight.rb [on|off|max(bright|dim)|disco|faster|slower|white|color (1-255)]"
+else puts "usage: milight.rb [on|off|max(bright|dim)|disco|faster|slower|white|night|color (1-255)]"
 end
