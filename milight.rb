@@ -1,12 +1,24 @@
 #!/usr/bin/ruby
 require 'socket'
+require 'json'
+
+def self.config()
+    milight_config = File.expand_path(
+                     File.join(
+                       'config', 'milight.json'
+                     )
+                   )
+    return JSON.parse(File.read(milight_config), symbolize_names: true)
+  end
 
 # master list of commands here: http://www.limitlessled.com/dev/
 
 #define limitlessled wifi bridge ## uncomment this if you are running this standalone ##
-wifi_bridge_ip = '192.168.2.141'
-wifi_bridge_port = 8899
+# wifi_bridge_ip = '192.168.2.141'
+# wifi_bridge_port = 8899
 
+wifi_bridge_ip = config[:wifi_bridge_ip]
+wifi_bridge_port = config[:wifi_bridge_port]
 
 ######## GROUP 1 ########
 #define lamp states
@@ -69,7 +81,7 @@ when "white"
     socket.send(white_init, 0, wifi_bridge_ip, wifi_bridge_port)
     sleep 0.1
     socket.send(white_finish, 0, wifi_bridge_ip, wifi_bridge_port)
-    
+
 when "night"
     socket = UDPSocket.new
     for i in 0..1
