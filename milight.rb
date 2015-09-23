@@ -2,16 +2,6 @@
 require 'socket'
 
 # master list of commands here: http://www.limitlessled.com/dev/
-# LimitlessLED RGB
-# 22 00 55 – Lamps On
-# 21 00 55 – Lamps Off
-# 23 00 55 – Brightness Up
-# 24 00 55 – Brightness Down (There are nine steps between min and max)
-# 27 00 55 – Mode Up
-# 28 00 55 – Mode Down (There are 20 modes. The lowest is constant white)
-# 25 00 55 – Speed Up (Fast)
-# 26 00 55 – Speed Down (Slow)
-# 20 xx 55 – Set Colour to xx
 
 #define limitlessled wifi bridge ## uncomment this if you are running this standalone ##
 wifi_bridge_ip = '192.168.2.141'
