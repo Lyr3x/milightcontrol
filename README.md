@@ -1,2 +1,2 @@
-# milightcontroll
+# milightcontrol
 UI controller for milight
