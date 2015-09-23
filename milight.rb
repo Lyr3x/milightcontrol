@@ -32,15 +32,11 @@ max_bright = "\x4E\x1B\x55"
 
 #define max dim
 max_dim = "\x4E\x02\x55"
-#define brightness states
-# bright_up = "\x23\x00\x55"
-# bright_down = "\x24\x00\x55"
 
-# #define mode states
-# mode_up = "\x27\x00\x55"
-# mode_down = "\x28\x00\x55"
+#define disco mode
+disco = "\x4D\x00\x55"
 
-# #define speed states
+#define speed states
 speed_up = "\x44\x00\x55"
 speed_down = "\x43\x00\x55"
 
@@ -62,7 +58,11 @@ when "maxbright"
 when "maxdim"
     socket = UDPSocket.new
     socket.send(max_dim, 0, wifi_bridge_ip, wifi_bridge_port) 
-  
+
+when "disco"
+    socket = UDPSocket.new
+    socket.send(disco, 0, wifi_bridge_ip, wifi_bridge_port) 
+
 when "faster"
   socket = UDPSocket.new
   socket.send(speed_up, 0, wifi_bridge_ip, wifi_bridge_port)
@@ -91,5 +91,5 @@ when "color"
   socket = UDPSocket.new
   socket.send(set_color, 0, wifi_bridge_ip, wifi_bridge_port)
   
-else puts "usage: milight.rb [on|off|max(bright|dim)|faster|slower|white|color (1-255)]"
+else puts "usage: milight.rb [on|off|max(bright|dim)|disco|faster|slower|white|color (1-255)]"
 end
