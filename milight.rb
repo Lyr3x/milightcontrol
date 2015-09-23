@@ -84,11 +84,13 @@ when "white"
 
 when "night"
     socket = UDPSocket.new
-    for i in 0..1
+    t = Time.now
+    loop do
       socket.send(lamp_off, 0, wifi_bridge_ip, wifi_bridge_port)
-      sleep 0.1
-      socket.send(night_mode, 0, wifi_bridge_ip, wifi_bridge_port)
+      break if Time.now > t 
     end
+      socket.send(night_mode, 0, wifi_bridge_ip, wifi_bridge_port)
+
 when "color"
   #set color argument to be an integer
   passed_color = ARGV[1].to_i
