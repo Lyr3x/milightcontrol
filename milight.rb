@@ -30,6 +30,9 @@ disco = "\x4D\x00\x55"
 speed_up = "\x44\x00\x55"
 speed_down = "\x43\x00\x55"
 
+#define night mode
+night_mode = "\xC6\x00\x55"
+
 
 ###############################################
 case ARGV[0]
@@ -66,7 +69,13 @@ when "white"
     socket.send(white_init, 0, wifi_bridge_ip, wifi_bridge_port)
     sleep 0.1
     socket.send(white_finish, 0, wifi_bridge_ip, wifi_bridge_port)
-  
+when "night"
+    socket = UDPSocket.new
+    for i in 0..1
+      socket.send(lamp_off, 0, wifi_bridge_ip, wifi_bridge_port)
+      sleep 0.1
+      socket.send(night_mode, 0, wifi_bridge_ip, wifi_bridge_port)
+    end
 when "color"
   #set color argument to be an integer
   passed_color = ARGV[1].to_i
